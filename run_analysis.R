@@ -37,3 +37,5 @@ by_activity <- melt(total_rowdata,id.vars = c("activity","subject"))
 grouped_by_activity <- group_by(by_activity,activity,subject,variable)
 ##Resultant summary statistics
 result <- summarise(grouped_by_activity,mean(value))
+resulta <- dcast(result , activity+subject~variable,fun=mean,value=mean(value))
+write.table(resulta,file="tidy.txt",sep=" ",row.name=FALSE)
